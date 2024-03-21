@@ -25,7 +25,6 @@ isMoved = [False for _ in range(MAX_N)]
 
 def tryMoving(idx, dir):
     q = deque()
-    isPos = True
 
     # 초기화 작업
     for i in range(1, n + 1):
@@ -44,7 +43,7 @@ def tryMoving(idx, dir):
         nc[cur] += dy[dir]
 
         # 보드 밖인지 체크
-        if nr[cur] < 1 or nr[cur] > l or nc[cur] < 1 or nc[cur] > l:
+        if nr[cur] < 1 or nr[cur] + h[cur] - 1 > l or nc[cur] < 1 or nc[cur] + w[cur] - 1 > l:
             return False
         
         # 이동시 충돌 체크
