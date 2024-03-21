@@ -140,4 +140,4 @@ for _ in range(Q):
     # 충돌난 기사 다 이동시켰으면 이제 초기화
     bumped = []
 
-    print(damages)
+print(damages)
