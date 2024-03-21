@@ -45,6 +45,7 @@
     충돌 따지는 법: r, c, w, h 2중 for문 돌면서 함정 있으면 -1
     
 """
+import sys
 L, N, Q = map(int, input().split())
 board = []
 for _ in range(L):
@@ -67,6 +68,10 @@ dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
 bumped = []
+
+if N == 1:
+    print(0)
+    sys.exit()
 
 def move(idx, dir, cumul):
     r = pos[idx][0]
