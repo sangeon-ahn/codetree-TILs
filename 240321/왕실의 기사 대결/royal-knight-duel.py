@@ -96,7 +96,7 @@ def move(idx, dir, cumul):
                             return False
     return True
 
-damages = 0
+damages = [0 for _ in range(N)]
 
 for _ in range(Q):
     idx, dir = map(int, input().split())
@@ -108,15 +108,15 @@ for _ in range(Q):
     # dir 방향으로 idx 이동
 
     res = move(idx, dir, 0)
- 
+    # print(bumped, res)
     # 충돌했으면 넘어가기
     if not res:
         bumped = []
         continue
 
     # 충돌 안했는데 부딪친거 없으면 그냥 이동
+    pos[idx] = (pos[idx][0] + dx[dir], pos[idx][1] + dy[dir])
     if not bumped:
-        pos[idx] = (pos[idx][0] + dx[dir], pos[idx][1] + dy[dir])
         continue
 
     # 충돌했으면, 충돌한 기사들 구했으니 bumped 맨 뒤부터 이동시키기
@@ -135,9 +135,13 @@ for _ in range(Q):
             for k in range(size[bumped[i]][1]):
                 if board[r + j][c + k] == 1:
                     healths[bumped[i]] -= 1
-                    damages += 1
+                    damages[bumped[i]] += 1
 
     # 충돌난 기사 다 이동시켰으면 이제 초기화
     bumped = []
 
-print(damages)
+ans = 0
+for i in range(N):
+    if healths[i] > 0:
+        ans += damages[i]
+print(ans)
